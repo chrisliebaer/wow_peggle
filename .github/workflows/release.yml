@@ -6,9 +6,9 @@ on:
       - '**'
 
 env:
-  CF_API_KEY: ${{ secrets.CF_API_KEY }}
-  WOWI_API_TOKEN: ${{ secrets.WOWI_API_TOKEN }}
-  WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
+  #CF_API_KEY: ${{ secrets.CF_API_KEY }}
+  #WOWI_API_TOKEN: ${{ secrets.WOWI_API_TOKEN }}
+  #WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
   GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
@@ -19,6 +19,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: BigWigsMods/packager@v2
+      - uses: BigWigsMods/packager@7cd7fe5fede4ca80f63742e6bc1d777914814380
         with:
-          args: -S
+          args: -g retail

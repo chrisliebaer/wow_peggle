@@ -1,6 +1,6 @@
 ## Interface: 100000
 ## Title: Peggle (Unofficial)
-## Version: 2.3.4
+## Version: 2.4.0
 ## Notes: The popular game Peggle, now back in World of Warcraft!
 ## Author: PopCap Games Inc.
 ## SavedVariables: PeggleData
