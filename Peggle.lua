@@ -157,7 +157,7 @@ e.locale = {
 	["CREDITS8a"] = "BraveOne - Aerie Peak [A]\n".."Johndoe - Executus EU [A]\n".."Kinu - Ravencrest [H]\n".."Klauen - Blackrock [H]\n".."Lothaer - Spinebreaker [A]\n".."Naiad - Dalaran [A]",
 	["CREDITS8b"] = "Palasadia - Doomhammer [H]\n".."Polgarra - Terokkar [A]\n".."Smashtastic - Khadgar [A]\n".."Sythalin - Thunderlord[A]\n".."Thanotos- Turalyon[A]\n".."Vodax - Dalaran [A]\n".."Zoquara - Nordrassil [A]",
 	["CREDITS9"] = "Github Contributors",
-	["CREDITS9a"]= " adamz01h\n Nimos\n ZombieProtectionAgency\n Andy1210\n Ketho, C0rn3j",
+	["CREDITS9a"]= " adamz01h\n Nimos\n ZombieProtectionAgency\n Andy1210\n Ketho, C0rn3j, Chrisliebär",
 	["DUEL"] = "DUEL",
 	["DUEL_BREAKDOWN1"] = "Your Score: %s",
 	["DUEL_BREAKDOWN1a"] = "Opponent's Score: %s",
@@ -2235,7 +2235,7 @@ local function Je(r, o, l, e, i, a, d, t, n)
 	e:SetHeight(32);
 	e:SetAutoFocus(false);
 	e:SetNumeric(a);
-	e:SetMaxLetters(d);
+	e:SetMaxLetters(d or 50);
 	e:SetHitRectInsets(0, 0, 8, 8);
 	e:Show();
 	if(t)then
@@ -2251,17 +2251,17 @@ local function Je(r, o, l, e, i, a, d, t, n)
 	return e, o + 24;
 end
 local function x(n, a, h, o, S, t, l, d, r, c, i, s)
-	local t = CreateFrame("CheckButton", "PeggleCheckbox_"..o, t, "OptionsCheckButtonTemplate");
+	local t = CreateFrame("CheckButton", "PeggleCheckbox_"..o, t, "InterfaceOptionsCheckButtonTemplate");
 	t:SetWidth(21);
 	t:SetHeight(21);
 	t:SetPoint("Topleft", n,  - a);
 	local n = getglobal(t:GetName().."Text");
 	if(s)then
-		n:SetFont(e.artPath.."OVERLOAD.ttf", 10);
+		n:SetFont(e.artPath.."OVERLOAD.ttf", 10, "");
 		t:SetWidth(17);
 		t:SetHeight(17);
 	else
-		n:SetFont(STANDARD_TEXT_FONT, 14);
+		n:SetFont(STANDARD_TEXT_FONT, 14, "");
 	end
 	n:SetJustifyV("Top");
 	n:SetJustifyH("Left");
@@ -2290,9 +2290,9 @@ function o:CreateSlider(s, d, c, r, n, t, l, S, h, i, p, a, T, g, u, f)
 	t:SetWidth(c);
 	getglobal(t:GetName().."Thumb"):Show();
 	if(f)then
-		getglobal(t:GetName().."Text"):SetFont(e.artPath.."OVERLOAD.ttf", a or 14);
+		getglobal(t:GetName().."Text"):SetFont(e.artPath.."OVERLOAD.ttf", a or 14, "");
 	else
-		getglobal(t:GetName().."Text"):SetFont(STANDARD_TEXT_FONT, a or 14);
+		getglobal(t:GetName().."Text"):SetFont(STANDARD_TEXT_FONT, a or 14, "");
 	end
 	getglobal(t:GetName().."Text"):SetShadowOffset(1,  - 1);
 	getglobal(t:GetName().."Text"):SetText(r);
@@ -2350,7 +2350,7 @@ function o:CreateCaption(i, r, s, t, n, S, d, c, l, a, o)
 		t:SetFont(e.artPath.."OVERLOAD.ttf", (n or 10), (o or"Outline"));
 	else
 		if(a)then
-			t:SetFont(STANDARD_TEXT_FONT, (n or 10));
+			t:SetFont(STANDARD_TEXT_FONT, (n or 10), "");
 		else
 			t:SetFont(STANDARD_TEXT_FONT, (n or 10), (o or"Outline"));
 		end
@@ -5898,7 +5898,7 @@ local function me()
 	n:Hide();
 	n.showID = 1;
 	t.fontObj = CreateFont("PeggleDropdownFont");
-	t.fontObj:SetFont(e.artPath.."OVERLOAD.ttf", 16);
+	t.fontObj:SetFont(e.artPath.."OVERLOAD.ttf", 16, "");
 	t.fontObj.oldSetFont = t.fontObj.SetFont;
 	t.fontObj.oldGetFont = t.fontObj.GetFont;
 	t.fontObj.oldGetFontObject = t.fontObj.GetFontObject;
@@ -9045,7 +9045,7 @@ local function w(n, l, ...)
 		n:SetWidth(160 * 1.8);
 		n:Show();
 		n = l:CreateFontString(nil, "Overlay");
-		n:SetFont(STANDARD_TEXT_FONT, 12);
+		n:SetFont(STANDARD_TEXT_FONT, 12, "");
 		n:SetShadowColor(0, 0, 0);
 		n:SetShadowOffset(1,  - 1);
 		n:SetTextColor(1, 1, 1);
@@ -9087,7 +9087,7 @@ local function w(n, l, ...)
 	n:SetBackdropBorderColor(1, .8, .45);
 	n:SetBackdropBorderColor(1, 1, 1);
 	text = n:CreateFontString(nil, "Overlay");
-	text:SetFont(STANDARD_TEXT_FONT, 12);
+	text:SetFont(STANDARD_TEXT_FONT, 12, "");
 	text:SetShadowColor(0, 0, 0);
 	text:SetShadowOffset(1,  - 1);
 	text:SetTextColor(1, 1, 1);
@@ -9447,8 +9447,7 @@ local function W()
 	n:SetHeight(32);
 	n:SetTexture(e.artPath.."resize");
 	t.logo = a;
-	t:SetMaxResize(e.windowWidth * 1.5, e.windowHeight * 1.5);
-	t:SetMinResize(e.windowWidth / 2, e.windowHeight / 2);
+	t:SetResizeBounds(e.windowWidth / 2, e.windowHeight / 2, e.windowWidth * 1.5, e.windowHeight * 1.5);
 	t:SetResizable(true);
 	t:SetScript("OnSizeChanged", function(o)
 		local n = o:GetWidth();
